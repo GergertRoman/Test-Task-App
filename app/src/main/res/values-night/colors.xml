@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="colorPrimary">@color/gray</color>
+  <color name="colorPrimaryLight">@color/darkGray</color>
+  <color name="colorPrimaryDark">@color/darkGray</color>
+  <color name="colorTextPrimary">@android:color/white</color>
+  <color name="colorTextPrimaryDark">@android:color/white</color>
+  <color name="colorAlertButton">@color/yellow</color>
+  <color name="colorControlDisabled">@color/textColor</color>
+  <color name="colorBottomNavigation">#D9333333</color>
+  <color name="colorWindowBackground">@color/black</color>
+  <color name="colorContentBackground">@color/darkGray</color>
+  <color name="colorListItemBackground">@color/textColor</color>
+  <color name="colorLoadingBackground">#505A5A5A</color>
+  <color name="colorSkeletonForeground">@color/textColor</color>
+</resources>

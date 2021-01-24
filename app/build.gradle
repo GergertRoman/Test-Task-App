@@ -1,16 +1,19 @@
-plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-}
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    def ext = rootProject.ext
+    compileSdkVersion ext.androidCompileSdkVersion
+    buildToolsVersion ext.androidBuildToolsVersion
 
     defaultConfig {
         applicationId "com.example.testtaskapp"
-        minSdkVersion 16
-        targetSdkVersion 30
+        minSdkVersion ext.androidMinSdkVersion
+        targetSdkVersion ext.androidTargetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -27,18 +30,61 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    buildFeatures { viewBinding true }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
 }
 
 dependencies {
+    def dependencies = rootProject.ext.dependencies
+    def developmentDependencies = rootProject.ext.developmentDependencies
+    def testDependencies = rootProject.ext.testDependencies
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Core modules
+    implementation project(':core-api')
+    implementation project(':core-android')
+    implementation project(':common-utils')
+    implementation project(':common-plugins')
+    implementation project(':common-navigation')
+    implementation project(':common-extension')
+
+    // RxBinding
+    implementation dependencies.rxAndroid
+    implementation dependencies.rxBinding
+    implementation dependencies.rxBindingCore
+    implementation dependencies.rxBindingRecyclerView
+    implementation dependencies.rxBindingSwipeRefreshLayout
+
+    implementation developmentDependencies.kotlinStdlibJdk7
+    implementation dependencies.appcompat
+    implementation developmentDependencies.coreKtx
+    implementation dependencies.constraintlayout
+
+    // Network
+    implementation developmentDependencies.stetho
+
+    // Material
+    implementation dependencies.material
+
+    // Lifecycle
+    implementation developmentDependencies.lifecycleCommon
+
+    // Dagger
+    implementation developmentDependencies.dagger
+    kapt developmentDependencies.daggerCompiler
+
+    // Hilt
+    implementation developmentDependencies.hilt
+    implementation developmentDependencies.hiltViewModel
+    kapt developmentDependencies.hiltAndroidCompiler
+    kapt developmentDependencies.hiltCompiler
+
+    testImplementation testDependencies.junit
+    androidTestImplementation testDependencies.androidJunit
+    androidTestImplementation testDependencies.espresso
 }
