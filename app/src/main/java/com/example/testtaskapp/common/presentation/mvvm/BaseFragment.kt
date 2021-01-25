@@ -1,4 +1,4 @@
-package ru.dellin.b2c.common.presentation.mvvm
+package com.example.testtaskapp.common.presentation.mvvm
 
 import android.content.Context
 import android.os.Bundle
@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.example.testtaskapp.R
-import com.example.testtaskapp.common.presentation.mvvm.AutoDisposable
 import com.jakewharton.rxbinding3.view.clicks
 import ru.dellin.common.extension.core.hideKeyboard
+import ru.dellin.common.navigation.jetpack.JetpackNavHandlerImpl
 import ru.dellin.common.plugins.alert.AlertUIDelegatePlugin
 import ru.dellin.common.plugins.alert.AlertUIDelegatePluginImpl
 import ru.dellin.common.plugins.loading.LoadingUIDelegatePlugin
@@ -79,7 +81,9 @@ abstract class BaseFragment(
     plugins.forEach { it.onUIDelegatePluginEvent(event) }
   }
 
-  private fun initUIDelegatePlugins() { addUIDelegatePlugin(loadingPlugin) }
+  private fun initUIDelegatePlugins() {
+    addUIDelegatePlugin(loadingPlugin)
+  }
 
   private fun addUIDelegatePlugin(plugin: UIDelegatePlugin<Fragment>) {
     with(plugins) {

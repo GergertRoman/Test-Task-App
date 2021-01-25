@@ -52,6 +52,7 @@ dependencies {
     implementation project(':common-plugins')
     implementation project(':common-navigation')
     implementation project(':common-extension')
+    implementation project(':common-rx-utils')
 
     // RxBinding
     implementation dependencies.rxAndroid
@@ -74,15 +75,19 @@ dependencies {
     // Lifecycle
     implementation developmentDependencies.lifecycleCommon
 
-    // Dagger
+    /*// Dagger
     implementation developmentDependencies.dagger
-    kapt developmentDependencies.daggerCompiler
+    kapt developmentDependencies.daggerCompiler*/
 
     // Hilt
     implementation developmentDependencies.hilt
     implementation developmentDependencies.hiltViewModel
     kapt developmentDependencies.hiltAndroidCompiler
     kapt developmentDependencies.hiltCompiler
+
+    // jetpack navigation
+    implementation developmentDependencies.jetpackNavFragment
+    implementation developmentDependencies.jetpackNavUi
 
     testImplementation testDependencies.junit
     androidTestImplementation testDependencies.androidJunit

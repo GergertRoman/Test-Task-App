@@ -4,5 +4,6 @@ include ':core-android'
 include ':common-extension'
 include ':common-utils'
 include ':core-api'
+include ':common-rx-utils'
 include ':app'
 rootProject.name = "Test Task App"

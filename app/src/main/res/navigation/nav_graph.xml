@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/test_nav_graph"
+  app:startDestination="@id/testFragment1">
+
+  <fragment
+    android:id="@+id/testFragment1"
+    android:name="com.example.testtaskapp.feature.test1.TestFragment1"
+    android:label="TestFragment1"
+    tools:layout="@layout/test_fragment_1">
+    <action
+      android:id="@+id/action_testFragment1_to_testFragment2"
+      app:destination="@id/testFragment2" >
+      <argument
+        android:name="screenTitle"
+        android:defaultValue="0"
+        app:argType="string" />
+    </action>
+  </fragment>
+
+  <fragment
+    android:id="@+id/testFragment2"
+    android:name="com.example.testtaskapp.feature.test2.TestFragment2"
+    android:label="TestFragment2"
+    tools:layout="@layout/test_fragment_2">
+    <argument
+      android:name="screenTitle"
+      android:defaultValue="0"
+      app:argType="string" />
+
+    <action
+      android:id="@+id/action_testFragment2_to_testFragment1"
+      app:destination="@id/testFragment1"
+      app:launchSingleTop="true"
+      app:popUpTo="@id/test_nav_graph"
+      app:popUpToInclusive="true" />
+  </fragment>
+</navigation>
